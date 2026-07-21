@@ -16,9 +16,10 @@ class Solution:
             k = n-1
 
             while j<k :
-                if nums[i]+nums[j]+nums[k]<0:
+                ele_sum = nums[i]+nums[j]+nums[k]
+                if ele_sum<0:
                     j+=1
-                elif nums[i]+nums[j]+nums[k]>0:
+                elif ele_sum>0:
                     k-=1
                 else:
                     res.append([nums[i],nums[j],nums[k]])
