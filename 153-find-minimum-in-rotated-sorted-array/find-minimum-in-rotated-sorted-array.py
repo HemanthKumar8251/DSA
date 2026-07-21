@@ -1,12 +1,15 @@
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-        left,right = 0,len(nums)-1
-        last = nums[len(nums)-1]
-        while left<right:
-            mid = left+(right-left)//2
-            if nums[mid]>last:
-                left = mid + 1
-            else:
-                right = mid
-        return nums[left]
+        # left,right = 0,len(nums)-1
+        # last = nums[len(nums)-1]
+        # while left<right:
+        #     mid = left+(right-left)//2
+        #     if nums[mid]>last:
+        #         left = mid + 1
+        #     else:
+        #         right = mid
+        # return nums[left]
+
+        # Using bisect_left function
+        return nums[bisect_left(nums, True, key=lambda n: n <= nums[-1])]
             
