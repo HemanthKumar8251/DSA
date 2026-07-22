@@ -17,6 +17,6 @@ class Solution:
                 indx_j = j
                 break
         nums[indx_i],nums[indx_j] = nums[indx_j],nums[indx_i]
-        nums[indx_i+1:]= nums[indx_i+1:][::-1] 
+        nums[indx_i+1:]= sorted(nums[indx_i+1:]) 
         
         
