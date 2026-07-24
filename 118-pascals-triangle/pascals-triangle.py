@@ -10,5 +10,5 @@ class Solution:
             for j in range(1,i):
                 temp.append(res[i-1][j-1]+res[i-1][j])
             temp.append(1)
-            res.append(temp[:])
+            res.append(temp)
         return res
