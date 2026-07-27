@@ -22,8 +22,8 @@ class Solution:
             else:
                 return False
         
-        for i in hash_map.values():
-            if i!= 0:
-                return False
-        
+        flag = any((i for i in hash_map.values()))
+                
+        if flag:
+            return False
         return True
