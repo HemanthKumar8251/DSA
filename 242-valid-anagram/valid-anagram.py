@@ -12,18 +12,19 @@ class Solution:
             return False
         hash_map = {}
         for i in s:
-            if i in hash_map:
-                hash_map[i]+=1
-            else:
-                hash_map[i] = 1
-        for i in t:
-            if i in hash_map:
-                hash_map[i]-=1
-            else:
-                return False
-        
-        flag = any((i for i in hash_map.values()))
+            # if i in hash_map:
+            #     hash_map[i]+=1
+            # else:
+            #     hash_map[i]=1
+            hash_map[i] = hash_map.get(i,0)+1
                 
-        if flag:
-            return False
+        for i in t:
+            if i not in hash_map or hash_map[i]==0:
+                return False
+            hash_map[i]-=1
+        
+        # for i in hash_map.values():
+        #     if i!= 0:
+        #         return False
+
         return True
