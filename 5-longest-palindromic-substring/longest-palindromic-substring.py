@@ -3,7 +3,7 @@ class Solution:
         n = len(s)
         if n==1:
             return s
-            
+
         def expand_around_center(s: str,left: int, right: int):
             n = len(s)
             while(left>=0 and right<n and s[left]==s[right]):
@@ -23,5 +23,3 @@ class Solution:
                 end = i + max_len//2
 
         return s[start:end+1]
-            
-        return s[res[0]:res[1]+1]
