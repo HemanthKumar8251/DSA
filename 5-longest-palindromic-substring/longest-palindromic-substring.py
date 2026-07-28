@@ -3,14 +3,7 @@ class Solution:
         n = len(s)
         if n==1:
             return s
-
-        # for i in range(n-1):
-        #     j=n-1
-        #     while(j>i):
-        #         if s[i]==s[j] and s[i:j+1]==s[i:j+1][::-1]:
-        #             return s[i:j+1]
-        #         j -= 1
-        # return s[0]
+            
         def expand_around_center(s: str,left: int, right: int):
             n = len(s)
             while(left>=0 and right<n and s[left]==s[right]):
