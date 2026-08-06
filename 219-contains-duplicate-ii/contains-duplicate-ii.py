@@ -1,13 +1,23 @@
 class Solution:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
-        hashMap = {}
-        for i in range(len(nums)):
-            hashMap[nums[i]] = hashMap.get(nums[i],[])+[i]
+        # O(N**2) Time, O(N) Space
+        # hashMap = {}
+        # for i in range(len(nums)):
+        #     hashMap[nums[i]] = hashMap.get(nums[i],[])+[i]
         
-        for _,idx in hashMap.items():
-            if len(idx)>=2:
-                for i in range(len(idx)-1):
-                    if idx[i+1]-idx[i]<=k:
-                        return True
+        # for _,idx in hashMap.items():
+        #     if len(idx)>=2:
+        #         for i in range(len(idx)-1):
+        #             if idx[i+1]-idx[i]<=k:
+        #                 return True
+        # return False
+        
 
+        # O(N) Time, O(N) Space
+        hashMap = {}
+        for i,num in enumerate(nums):
+            if num in hashMap and i-hashMap[num]<=k:
+                return True
+            hashMap[num] = i
+        
         return False
