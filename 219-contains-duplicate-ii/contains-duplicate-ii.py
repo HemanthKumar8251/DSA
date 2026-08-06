@@ -14,10 +14,20 @@ class Solution:
         
 
         # O(N) Time, O(N) Space
-        hashMap = {}
+        # hashMap = {}
+        # for i,num in enumerate(nums):
+        #     if num in hashMap and i-hashMap[num]<=k:
+        #         return True
+        #     hashMap[num] = i
+        # return False
+
+        # Sliding Window O(N) Time, O(min(N,K)) Space
+        hashSet = set()
         for i,num in enumerate(nums):
-            if num in hashMap and i-hashMap[num]<=k:
+            if len(hashSet)>k:
+                hashSet.remove(nums[i-k-1])
+            if num in hashSet:
                 return True
-            hashMap[num] = i
-        
+            hashSet.add(num)
         return False
+            
