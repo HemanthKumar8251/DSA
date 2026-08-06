@@ -22,16 +22,12 @@ class Solution:
         # return False
 
         # Sliding Window O(N) Time, O(min(N,K)) Space
-        s = set()
-
-        for i, num in enumerate(nums):
-            if num in s:
+        hashSet = set()
+        for i,num in enumerate(nums):
+            if i>k:
+                hashSet.remove(nums[i-k-1])
+            if num in hashSet:
                 return True
-
-            s.add(num)
-
-            if len(s) > k:
-                s.remove(nums[i - k])
-
+            hashSet.add(num)
         return False
             
