@@ -24,7 +24,7 @@ class Solution:
         # Sliding Window O(N) Time, O(min(N,K)) Space
         hashSet = set()
         for i,num in enumerate(nums):
-            if len(hashSet)>k:
+            if i>k:
                 hashSet.remove(nums[i-k-1])
             if num in hashSet:
                 return True
