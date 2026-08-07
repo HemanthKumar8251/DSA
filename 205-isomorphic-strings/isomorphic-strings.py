@@ -3,9 +3,7 @@ class Solution:
         sMap = {}
         tMap = {}
         for i,j in zip(s,t):
-            if i in sMap and sMap[i]!=j:
-                return False
-            if j in tMap and tMap[j]!=i:
+            if (i in sMap and sMap[i]!=j) or (j in tMap and tMap[j]!=i):
                 return False
             sMap[i] = j
             tMap[j] = i
