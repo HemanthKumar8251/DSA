@@ -2,8 +2,6 @@ class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
         sMap = {}
         tMap = {}
-        if s==t:
-            return True
         for i,j in zip(s,t):
             if i in sMap and sMap[i]!=j:
                 return False
