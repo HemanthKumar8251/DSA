@@ -17,6 +17,7 @@ class Solution:
         if n>m:
             return []
         
+        # O(m) Time, O(n) Space
         p_hash = Counter(p)
         s_hash = Counter()
         result = []
