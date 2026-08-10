@@ -21,3 +21,12 @@ class Solution:
                 j-=1
             else:
                 return [enumerated_nums[i][1],enumerated_nums[j][1]]
+
+
+
+        hashMap = {}
+        for i in range(len(nums)):
+            diff = target - nums[i]
+            if diff in hashMap:
+                return [hashMap[diff],i]
+            hashMap[diff] = i
