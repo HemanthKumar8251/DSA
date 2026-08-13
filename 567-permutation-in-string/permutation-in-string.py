@@ -8,6 +8,6 @@ class Solution:
             if right-left+1>len(s1):
                 freq_window[s2[left]]-=1
                 left +=1
-            if freq_s1 & freq_window == freq_s1:
+            if right-left+1==len(s1) and freq_s1 & freq_window == freq_s1:
                 return True
         return False
