@@ -5,10 +5,11 @@ class Solution:
         fruit_count = defaultdict(int)
         for right,fruit in enumerate(fruits):
             fruit_count[fruit] += 1
-            while len(fruit_count)>2:
+            if len(fruit_count)>2:
                 fruit_count[fruits[left]]-=1
                 if fruit_count[fruits[left]]==0:
                     del fruit_count[fruits[left]]
                 left += 1
-            max_fruits = max(right-left+1,max_fruits)
+            if len(fruit_count)<=2:
+                max_fruits = max(right-left+1,max_fruits)
         return max_fruits
