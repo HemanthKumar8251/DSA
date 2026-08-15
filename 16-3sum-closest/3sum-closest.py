@@ -12,6 +12,8 @@ class Solution:
                     min_diff_sum = curr
                 if curr<target:
                     j+=1
-                else:
+                elif curr>target:
                     k-=1
+                else:
+                    return target
         return min_diff_sum
