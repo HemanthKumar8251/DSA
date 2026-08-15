@@ -7,6 +7,9 @@ class Solution:
         if target<nums[0]+nums[1]+nums[2]:
             return nums[0]+nums[1]+nums[2]
         for i in range(n-2):
+            # Skipping duplicates
+            if i>0 and nums[i]==nums[i-1]:
+                continue
             j=i+1
             k=n-1
             while j<k:
