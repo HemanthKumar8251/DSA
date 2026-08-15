@@ -1,25 +1,63 @@
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
-        min_diff_sum = inf
-        nums.sort()
+        # min_diff_sum = inf
+        # nums.sort()
+        # n = len(nums)
+        # # Condition to shortcircute if there is no possibility 
+        # # of finding any other solution moving forward
+        # if target<nums[0]+nums[1]+nums[2]:
+        #     return nums[0]+nums[1]+nums[2]
+        # for i in range(n-2):
+        #     # Skipping duplicates
+        #     if i>0 and nums[i]==nums[i-1]:
+        #         continue
+        #     j=i+1
+        #     k=n-1
+        #     while j<k:
+        #         curr = nums[i]+nums[j]+nums[k]
+        #         if abs(target-curr)<abs(target-min_diff_sum):
+        #             min_diff_sum = curr
+        #         if curr<target:
+        #             j+=1
+        #         elif curr>target:
+        #             k-=1
+        #         else:
+        #             return target
+        # return min_diff_sum
         n = len(nums)
-        # Condition to shortcircute if there is no possibility of finding any other solution moving
-        if target<nums[0]+nums[1]+nums[2]:
-            return nums[0]+nums[1]+nums[2]
+        nums.sort()
+        min_diff = target-(nums[0]+nums[1]+nums[2])
         for i in range(n-2):
-            # Skipping duplicates
             if i>0 and nums[i]==nums[i-1]:
                 continue
-            j=i+1
-            k=n-1
+            
+            min_sum = nums[i]+nums[i+1]+nums[i+2]
+            if min_sum>target:
+                local_diff = target-min_sum
+                if abs(local_diff)<abs(min_diff):
+                    min_diff = local_diff
+                    break
+
+            max_sum = nums[i]+nums[n-2]+nums[n-1]
+            if max_sum<target:
+                local_diff = target-max_sum
+                if abs(local_diff)<abs(min_diff):
+                    min_diff = local_diff
+                    continue
+                
+            j = i+1
+            k = n-1
             while j<k:
-                curr = nums[i]+nums[j]+nums[k]
-                if abs(target-curr)<abs(target-min_diff_sum):
-                    min_diff_sum = curr
-                if curr<target:
-                    j+=1
-                elif curr>target:
+                local_diff = target-nums[i]-nums[j]-nums[k]
+                if abs(local_diff)<abs(min_diff):
+                    min_diff = local_diff
+
+                if local_diff == 0:
+                    return target
+
+                if local_diff < 0:
                     k-=1
                 else:
-                    return target
-        return min_diff_sum
+                    j+=1
+
+        return target-min_diff
