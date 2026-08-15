@@ -3,6 +3,8 @@ class Solution:
         min_diff_sum = inf
         nums.sort()
         n = len(nums)
+        if target<nums[0]+nums[1]+nums[2]:
+            return nums[0]+nums[1]+nums[2]
         for i in range(n-2):
             j=i+1
             k=n-1
