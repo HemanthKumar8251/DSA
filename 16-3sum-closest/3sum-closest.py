@@ -3,6 +3,7 @@ class Solution:
         min_diff_sum = inf
         nums.sort()
         n = len(nums)
+        # Condition to shortcircute if there is no possibility of finding any other solution moving
         if target<nums[0]+nums[1]+nums[2]:
             return nums[0]+nums[1]+nums[2]
         for i in range(n-2):
