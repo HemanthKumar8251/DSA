@@ -30,4 +30,27 @@ class Solution:
 
         mergeSort(nums,0,len(nums)-1)
         return nums
-        # Quick Sort - O()
+
+        # # Quick Sort - O(nlogn) Avg Case /O(n^2) Worst Case Time
+        # # O(nlogn) Space, O(n) Worst Case
+        # def quickSort(nums,low,high):
+        #     if low<high:
+        #         prt_idx = partition(nums,low,high)
+        #         quickSort(nums,low,prt_idx-1)
+        #         quickSort(nums,prt_idx+1,high)
+        
+        # def partition(nums,low,high):
+        #     pivot = nums[low]
+        #     left,right = low,high
+        #     while left<right:
+        #         while left<=high-1 and nums[left]<=pivot:
+        #             left+=1
+        #         while right>=low+1 and nums[right]>pivot:
+        #             right-=1
+        #         if left<right:
+        #             nums[left],nums[right]=nums[right],nums[left]
+        #     nums[low],nums[right]=nums[right],nums[low]
+        #     return left
+        
+        # quickSort(nums,0,len(nums)-1)
+        # return nums
