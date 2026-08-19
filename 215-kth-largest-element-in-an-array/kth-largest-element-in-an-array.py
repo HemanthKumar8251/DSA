@@ -44,17 +44,51 @@ class Solution:
         #     return j
         # return quickSelect(nums,0,len(nums)-1)
 
-        # Quick select 3-way partition and extra space
-        if not nums: return
-        pivot = random.choice(nums)
-        lt = [x for x  in nums if x<pivot]
-        eq = [x for x  in nums if x==pivot]
-        gt = [x for x  in nums if x>pivot]
-        L,M = len(gt), len(eq)
+        # # Quick select 3-way partition and extra space
+        # if not nums: return
+        # pivot = random.choice(nums)
+        # lt = [x for x  in nums if x<pivot]
+        # eq = [x for x  in nums if x==pivot]
+        # gt = [x for x  in nums if x>pivot]
+        # L,M = len(gt), len(eq)
 
-        if k<=L:
-            return self.findKthLargest(gt,k)
-        elif k>L+M:
-            return self.findKthLargest(lt,k-L-M)
-        else:
-            return eq[0]
+        # if k<=L:
+        #     return self.findKthLargest(gt,k)
+        # elif k>L+M:
+        #     return self.findKthLargest(lt,k-L-M)
+        # else:
+        #     return eq[0]
+
+        # 3-way Quick Select in-place:
+        target_idx = len(nums)-k
+
+        def quickSelect(low,high):
+            if low>=high:
+                return nums[low]
+            
+            pivot_idx = random.randint(low,high)
+            pivot = nums[pivot_idx]
+
+            i = low
+            lt = low
+            gt = high
+
+            while i<=gt:
+                if nums[i]<pivot:
+                    nums[i],nums[lt]=nums[lt],nums[i]
+                    lt+=1
+                    i+=1
+                elif nums[i]>pivot:
+                    nums[i],nums[gt]=nums[gt],nums[i]
+                    gt-=1
+                else:
+                    i+=1
+
+            if target_idx<lt:
+                return quickSelect(low,lt-1)
+            elif target_idx>gt:
+                return quickSelect(gt+1,high)
+            else:
+                return nums[target_idx]
+
+        return quickSelect(0,len(nums)-1)
