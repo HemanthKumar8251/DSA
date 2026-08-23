@@ -5,8 +5,9 @@ class Solution:
             mid = (low+high)//2
             if nums[mid]<nums[mid+1]:
                 low = mid+1
-            elif nums[mid]>nums[mid+1]:
-                high = mid
+            # elif nums[mid]>nums[mid+1]:
+            #     high = mid
             else:
-                return mid
+                # return mid
+                high = mid
         return low
