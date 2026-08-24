@@ -11,6 +11,8 @@ class Solution:
             cur_arr.append(nums[i])
             backtracking(cur_arr,i+1)
             cur_arr.pop()
+            while i+1 < len(nums) and nums[i] == nums[i + 1]:
+                i += 1
             backtracking(cur_arr,i+1)
         backtracking([],0)
         return res
