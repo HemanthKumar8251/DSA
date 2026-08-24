@@ -5,8 +5,7 @@ class Solution:
         res = []
         def backtracking(cur_arr,i):
             if i==len(nums):
-                if cur_arr not in res:
-                    res.append(list(cur_arr))
+                res.append(list(cur_arr))
                 return
             cur_arr.append(nums[i])
             backtracking(cur_arr,i+1)
