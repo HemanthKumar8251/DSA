@@ -3,20 +3,22 @@ class Solution:
         n = len(nums)
         result = []
         cur_arr = []
-        used = defaultdict(bool)
+        seen = [False]*n
         nums.sort()
         def permutations():
-            if len(cur_arr)==n and cur_arr not in result:
+            if len(cur_arr)==n:
                 result.append(list(cur_arr))
                 return
             for i in range(n):
-                if used[i]:
+                if seen[i]:
                     continue
-                used[i]=True
+                if i > 0 and nums[i] == nums[i - 1] and not seen[i - 1]:
+                    continue
+                seen[i]=True
                 cur_arr.append(nums[i])
                 permutations()
                 cur_arr.pop()
-                used[i]=False
+                seen[i]=False
         
         permutations()
         return result
