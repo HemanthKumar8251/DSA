@@ -6,9 +6,7 @@ class Solution:
         return result
 
     def combinationsSum(self, candidates, target, combi, sum, result, idx):
-        if sum>target:
-            return
-        elif sum==target:
+        if target == 0:
             result.append(combi[:])
             return
         for i in range(idx,len(candidates)):
@@ -18,6 +16,6 @@ class Solution:
                 break
             combi.append(candidates[i])
             sum += candidates[i]
-            self.combinationsSum(candidates,target,combi,sum,result,i+1)
+            self.combinationsSum(candidates,target-candidates[i],combi,sum,result,i+1)
             combi.pop()
             sum -= candidates[i]
