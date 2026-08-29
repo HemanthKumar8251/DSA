@@ -1,6 +1,7 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         result = []
+        candidates.sort()
         self.combinationsSum(candidates,target,[],0,result,0)
         return result
 
@@ -11,6 +12,8 @@ class Solution:
             result.append(combi[:])
             return
         for i in range(idx,len(candidates)):
+            if candidates[i]>target:
+                break
             combi.append(candidates[i])
             sum += candidates[i]
             self.combinationsSum(candidates,target,combi,sum,result,i)
