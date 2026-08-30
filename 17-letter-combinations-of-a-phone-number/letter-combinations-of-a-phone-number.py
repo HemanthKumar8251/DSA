@@ -6,14 +6,14 @@ class Solution:
             letters.append(numbers[digit])
         result = []
 
-        def combinationsLetters(digits,letters,idx,result,combi):
+        def combinationsLetters(digits,numbers,idx,result,combi):
             if len(combi)==len(digits):
                 result.append("".join(combi))
                 return 
-            for letter in letters[idx]:
+            for letter in numbers[digits[idx]]:
                 combi.append(letter)
-                combinationsLetters(digits,letters,idx+1,result,combi)
+                combinationsLetters(digits,numbers,idx+1,result,combi)
                 combi.pop()
         
-        combinationsLetters(digits,letters,0,result,[])
+        combinationsLetters(digits,numbers,0,result,[])
         return result
