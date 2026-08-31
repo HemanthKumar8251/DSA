@@ -1,14 +1,16 @@
 class Solution:
     def hammingWeight(self, n: int) -> int:
-        count = 1
-        while n!=1:
-            if n%2==1:
-                count += 1
-            n = n//2
-        return count
-
-        # count = 0
-        # for i in range(32):
-        #     if (n>>i) & 1:
+        # # Using Decimal to Binary Number conversion method
+        # count = 1
+        # while n!=1:
+        #     if n%2==1:
         #         count += 1
+        #     n = n//2
         # return count
+
+        # Using shift operator to shift bits and check for 1s
+        count = 0
+        for i in range(32):
+            if (n>>i) & 1:
+                count += 1
+        return count
