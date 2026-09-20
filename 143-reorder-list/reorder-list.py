@@ -14,10 +14,10 @@ class Solution:
             prev = None
             curr = l
             while curr:
-                next = curr.next
+                next1 = curr.next
                 curr.next = prev
                 prev = curr
-                curr = next
+                curr = next1
             return prev
         def findMiddleOfList(l):
             slow = l
@@ -31,10 +31,10 @@ class Solution:
         mid.next = None
         head2 = reverseList(head2)
         while head2:
-            next = head.next
+            next1 = head.next
             next2 = head2.next
             head2.next = head.next
             head.next = head2
-            head = next
+            head = next1
             head2 = next2
         head = dummy.next
