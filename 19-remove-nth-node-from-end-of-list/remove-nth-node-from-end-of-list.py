@@ -10,11 +10,8 @@ class Solution:
         slow = dummy
         for _ in range(n+1):
             fast = fast.next
-        if not fast:
-            head = head.next
-            return head
         while fast:
             slow = slow.next
             fast = fast.next
         slow.next = slow.next.next
-        return head
+        return dummy.next
