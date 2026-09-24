@@ -6,16 +6,13 @@ class Solution:
         for course,preq in prerequisites:
             adj[preq].append(course)
             indegree[course]+=1
-
-        q = deque([x for x in range(numCourses) if indegree[x]==0])
+        q = deque([i for i in range(numCourses) if indegree[i]==0])
         count = 0
-        
         while q:
-            node = q.popleft()
-            count += 1
-            for next_node in adj[node]:
-                indegree[next_node]-=1
-                if indegree[next_node]==0:
-                    q.append(next_node)
-        
+            curr = q.popleft()
+            for i in adj[curr]:
+                indegree[i]-=1
+                if indegree[i]==0:
+                    q.append(i)
+            count +=1
         return count==numCourses
