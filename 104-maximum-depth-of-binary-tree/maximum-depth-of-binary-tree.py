@@ -23,16 +23,32 @@ class Solution:
 
         # return 1+max(left_depth,right_depth)
 
-        # Iterative DFS Approach
-        max_depth = 0
+        # # Iterative DFS Approach
+        # max_depth = 0
+        # if not root:
+        #     return max_depth
+        # st = [(root,1)]
+        # while st:
+        #     node,depth = st.pop()
+        #     max_depth = max(depth,max_depth)
+        #     if node.right:
+        #         st.append((node.right,depth+1))
+        #     if node.left:
+        #         st.append((node.left,depth+1))
+        # return max_depth
+
+        # Iterative BFS approach
+        depth = 0
         if not root:
-            return max_depth
-        st = [(root,1)]
-        while st:
-            node,depth = st.pop()
-            max_depth = max(depth,max_depth)
-            if node.right:
-                st.append((node.right,depth+1))
-            if node.left:
-                st.append((node.left,depth+1))
-        return max_depth
+            return depth
+        q = deque()
+        q.append(root)
+        while q:
+            for _ in range(len(q)):
+                node = q.popleft()
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+            depth += 1
+        return depth
