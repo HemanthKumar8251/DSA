@@ -6,17 +6,30 @@
 #         self.right = right
 class Solution:
     def invertTree(self, root: TreeNode | None) -> TreeNode | None:
-        # Iterative BFS approach
+        # # Iterative BFS approach
+        # if not root:
+        #     return
+        # q = deque()
+        # q.append(root)
+        # while q:
+        #     for _ in range(len(q)):
+        #         node = q.popleft()
+        #         if node.left:
+        #             q.append(node.left)
+        #         if node.right:
+        #             q.append(node.right)
+        #         node.right,node.left = node.left, node.right
+        # return root
+
+        # Iterative DFS
         if not root:
             return
-        q = deque()
-        q.append(root)
-        while q:
-            for _ in range(len(q)):
-                node = q.popleft()
-                if node.left:
-                    q.append(node.left)
-                if node.right:
-                    q.append(node.right)
-                node.right,node.left = node.left, node.right
+        st = [root]
+        while st:
+            node = st.pop()
+            if node.right:
+                st.append(node.right)
+            if node.left:
+                st.append(node.left)
+            node.right,node.left = node.left,node.right
         return root
