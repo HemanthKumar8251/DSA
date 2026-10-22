@@ -9,17 +9,15 @@ class Solution:
         # Using BFS
         q = deque([root])
         averages = []
-        level = 0
         while q:
             total = 0
-            node_count = 0
-            for _ in range(len(q)):
+            level_size = len(q)
+            for _ in range(level_size):
                 node = q.popleft()
-                node_count += 1
                 total += node.val
                 if node.left:
                     q.append(node.left)
                 if node.right:
                     q.append(node.right)
-            averages.append(total/node_count)
+            averages.append(total/level_size)
         return averages
