@@ -18,23 +18,50 @@ class Solution:
         #     return False
         # return self.isBalanced(root.left) and self.isBalanced(root.right)
 
-        # Recursive Bottom Up Approach
-        if not root:
-            return True
-        def helper(node):
-            if not node:
-                return 0
-            left_h = helper(node.left)
-            if left_h==-1:
-                return -1
-            right_h = helper(node.right)
-            if right_h==-1:
-                return -1
-            if abs(left_h-right_h)>1:
-                return -1
-            return 1+max(left_h,right_h)
-        return helper(root)!=-1
+        # # Recursive Bottom Up Approach
+        # if not root:
+        #     return True
+        # def helper(node):
+        #     if not node:
+        #         return 0
+        #     left_h = helper(node.left)
+        #     if left_h==-1:
+        #         return -1
+        #     right_h = helper(node.right)
+        #     if right_h==-1:
+        #         return -1
+        #     if abs(left_h-right_h)>1:
+        #         return -1
+        #     return 1+max(left_h,right_h)
+        # return helper(root)!=-1
 
         # Post Order Iterative Approach
-
+        if not root:
+            return True
         
+        st = []
+        last_visited = None
+        curr = root
+        height = {None:0}
+        while st or curr:
+            while curr:
+                st.append(curr)
+                curr = curr.left
+
+            peek = st[-1]
+
+            if peek.right and peek.right!=last_visited:
+                curr = peek.right
+            else:
+                node = st.pop()
+
+                left_height = height[node.left]
+                right_height = height[node.right]
+
+                if abs(left_height-right_height)>1:
+                    return False
+
+                height[node] = 1+max(left_height,right_height)
+
+                last_visited = node
+        return True
