@@ -20,11 +20,25 @@ class Solution:
         #             q.append((node.right,node.val,high))
         # return True
 
-        # Recursive DFS Approach
-        def traversal(node,low,high):
-            if not node:
-                return True
-            if not (low<node.val<high):
+        # # Recursive DFS Approach
+        # def traversal(node,low,high):
+        #     if not node:
+        #         return True
+        #     if not (low<node.val<high):
+        #         return False
+        #     return traversal(node.right,node.val,high) and traversal(node.left,low,node.val)
+        # return traversal(root,float('-inf'),float('inf'))
+
+        # Iterative DFS Approach
+        st = []
+        prev = None
+        while st or root:
+            while root:
+                st.append(root)
+                root = root.left
+            root = st.pop()
+            if prev and root.val<=prev.val:
                 return False
-            return traversal(node.right,node.val,high) and traversal(node.left,low,node.val)
-        return traversal(root,float('-inf'),float('inf'))
+            prev = root
+            root = root.right
+        return True
