@@ -16,9 +16,9 @@ class Solution:
             lastright.right = rightchild
             return root.left
         def rightmostNode(root):
-            if root.right is None:
-                return root
-            return rightmostNode(root.right)
+            while root.right:
+                root = root.right
+            return root
         if not root:
             return
         if root.val==key:
