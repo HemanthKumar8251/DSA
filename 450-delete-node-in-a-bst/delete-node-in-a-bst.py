@@ -40,22 +40,62 @@ class Solution:
         #             root = root.right
         # return dummy
 
-        if not root:
-            return
+        # # Recursive approach for replacing the val and deleting the node
+        # if not root:
+        #     return
         
-        if root.val > key:
-            root.left = self.deleteNode(root.left,key)
-        elif root.val < key:
-            root.right = self.deleteNode(root.right,key)
-        else:
-            if root.left is None:
-                return root.right
-            if root.right is None:
-                return root.left
+        # if root.val > key:
+        #     root.left = self.deleteNode(root.left,key)
+        # elif root.val < key:
+        #     root.right = self.deleteNode(root.right,key)
+        # else:
+        #     if root.left is None:
+        #         return root.right
+        #     if root.right is None:
+        #         return root.left
 
-            temp = root.right
-            while temp.left:
-                temp = temp.left
-            root.val = temp.val
-            root.right = self.deleteNode(root.right,temp.val)
+        #     temp = root.right
+        #     while temp.left:
+        #         temp = temp.left
+        #     root.val = temp.val
+        #     root.right = self.deleteNode(root.right,temp.val)
+        # return root
+
+        # Iterative approach for deletion by replacing the node val
+        curr = root
+        prev = None
+        # Step 1: Finding the target node
+        while curr and curr.val!=key:
+            prev = curr
+            if curr.val>key:
+                curr = curr.left
+            elif curr.val< key:
+                curr = curr.right
+        # If the key doesn't exist in the BST
+        if not curr:
+            return root
+
+        # Step 2: Handling the deletion according to number of child nodes
+        # Case 1 : The node has 2 child nodes
+        if curr.left and curr.right:
+            succ_parent = curr
+            succ = curr.right
+            while succ.left:
+                succ_parent = succ
+                succ = succ.left
+            curr.val = succ.val
+            curr = succ
+            prev = succ_parent
+        # Case 2 : The node has 0(leaf) or 1 child node
+        child = curr.left if curr.left else curr.right
+
+        # Root node deletion
+        if not prev:
+            return child
+
+        if prev.left == curr:
+            prev.left = child
+        if prev.right == curr:
+            prev.right = child
+
         return root
