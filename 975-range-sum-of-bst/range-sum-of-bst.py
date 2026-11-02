@@ -23,7 +23,7 @@ class Solution:
 
         # Recursive smart traversal approach
         def bst(root):
-            if root is None:
+            if root==None:
                 return 0
             if root.val<low:
                 return bst(root.right)
