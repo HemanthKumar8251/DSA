@@ -17,8 +17,7 @@ class Solution:
             root = st.pop()
             res.append(root.val)
             root = root.right
-        
-        print(res)
+            
         low,high = 0,len(res)-1
 
         while low<high:
